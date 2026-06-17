@@ -38,6 +38,7 @@
   --font-family-poppins-bold:       "Poppins-Bold";
 
   /* ── Border radius extensions ─────────────────────────────────────────── */
+  --radius-full:              9999px;
   --radius-2xl:               20px;
   --radius-3xl:               24px;
 }
