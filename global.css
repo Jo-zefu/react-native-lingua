@@ -1,0 +1,217 @@
+@import "tailwindcss/theme.css" layer(theme);
+@import "tailwindcss/preflight.css" layer(base);
+@import "tailwindcss/utilities.css";
+
+@import "nativewind/theme";
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   DESIGN TOKENS
+   All values mirror src/theme/tokens.ts — keep them in sync.
+═══════════════════════════════════════════════════════════════════════════ */
+@theme {
+  /* ── Primary brand colors ─────────────────────────────────────────────── */
+  --color-primary:            #6C4EF5;   /* Lingua Purple   */
+  --color-primary-deep:       #5B3BF6;   /* Lingua Deep Purple */
+  --color-lingua-blue:        #4D8BFF;   /* Lingua Blue     */
+  --color-lingua-green:       #21C16B;   /* Lingua Green    */
+
+  /* ── Semantic colors ──────────────────────────────────────────────────── */
+  --color-success:            #21C16B;
+  --color-warning:            #FFC800;
+  --color-streak:             #FF8A00;
+  --color-error:              #FF4D4F;
+  --color-info:               #4D8BFF;
+
+  /* ── Neutral / surface colors ─────────────────────────────────────────── */
+  --color-text-primary:       #0D132B;
+  --color-text-secondary:     #6B7280;
+  --color-border:             #E5E7EB;
+  --color-surface:            #F6F7FB;
+  --color-background:         #FFFFFF;
+  --color-white:              #FFFFFF;
+
+  /* ── Font families (loaded via expo-font in _layout.tsx) ─────────────── */
+  --font-family-sans:               "Poppins-Regular";
+  --font-family-poppins:            "Poppins-Regular";
+  --font-family-poppins-medium:     "Poppins-Medium";
+  --font-family-poppins-semibold:   "Poppins-SemiBold";
+  --font-family-poppins-bold:       "Poppins-Bold";
+
+  /* ── Border radius extensions ─────────────────────────────────────────── */
+  --radius-2xl:               20px;
+  --radius-3xl:               24px;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   TYPOGRAPHY UTILITIES  (BEM — block: text, element: h1…caption)
+   Font sizes and line-heights match the design spec exactly.
+   Line-height values are absolute px so React Native renders them correctly.
+═══════════════════════════════════════════════════════════════════════════ */
+
+/* H1 — Page / Screen Title  32px Bold  lh 1.2 (38px) */
+@utility text-h1 {
+  font-family: "Poppins-Bold";
+  font-size: 32px;
+  line-height: 38px;
+  color: #0D132B;
+}
+
+/* H2 — Section Title  24px SemiBold  lh 1.3 (31px) */
+@utility text-h2 {
+  font-family: "Poppins-SemiBold";
+  font-size: 24px;
+  line-height: 31px;
+  color: #0D132B;
+}
+
+/* H3 — Card / Module Title  20px SemiBold  lh 1.3 (26px) */
+@utility text-h3 {
+  font-family: "Poppins-SemiBold";
+  font-size: 20px;
+  line-height: 26px;
+  color: #0D132B;
+}
+
+/* H4 — Subheading  16px Medium  lh 1.4 (22px) */
+@utility text-h4 {
+  font-family: "Poppins-Medium";
+  font-size: 16px;
+  line-height: 22px;
+  color: #0D132B;
+}
+
+/* Body Large — Important content  16px Regular  lh 1.6 (26px) */
+@utility text-body-lg {
+  font-family: "Poppins-Regular";
+  font-size: 16px;
+  line-height: 26px;
+  color: #0D132B;
+}
+
+/* Body Medium — Body text  14px Regular  lh 1.6 (22px) */
+@utility text-body-md {
+  font-family: "Poppins-Regular";
+  font-size: 14px;
+  line-height: 22px;
+  color: #0D132B;
+}
+
+/* Body Small — Supporting text  13px Regular  lh 1.6 (21px) */
+@utility text-body-sm {
+  font-family: "Poppins-Regular";
+  font-size: 13px;
+  line-height: 21px;
+  color: #0D132B;
+}
+
+/* Caption — Labels / meta text  11px Regular  lh 1.4 (15px) */
+@utility text-caption {
+  font-family: "Poppins-Regular";
+  font-size: 11px;
+  line-height: 15px;
+  color: #6B7280;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   BUTTON UTILITIES  (BEM — block: btn)
+═══════════════════════════════════════════════════════════════════════════ */
+
+/* btn-base — shared shape & spacing for all buttons */
+@utility btn-base {
+  border-radius: var(--radius-full);
+  padding-top: 14px;
+  padding-bottom: 14px;
+  padding-left: 24px;
+  padding-right: 24px;
+  align-items: center;
+  justify-content: center;
+}
+
+/* btn-primary — Lingua Purple fill */
+@utility btn-primary {
+  background-color: var(--color-primary);
+}
+
+/* btn-success — Lingua Green fill */
+@utility btn-success {
+  background-color: var(--color-success);
+}
+
+/* btn-warning — Warning yellow fill */
+@utility btn-warning {
+  background-color: var(--color-warning);
+}
+
+/* btn-outline — transparent with purple border */
+@utility btn-outline {
+  background-color: transparent;
+  border-width: 2px;
+  border-color: var(--color-primary);
+}
+
+/* btn-ghost — no background, no border */
+@utility btn-ghost {
+  background-color: transparent;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   CARD UTILITIES  (BEM — block: card)
+═══════════════════════════════════════════════════════════════════════════ */
+
+/* card-base — white rounded card */
+@utility card-base {
+  background-color: var(--color-white);
+  border-radius: var(--radius-2xl);
+  padding: 16px;
+}
+
+/* card-bordered — adds a subtle border to card-base */
+@utility card-bordered {
+  border-width: 2px;
+  border-color: var(--color-border);
+}
+
+/* card-surface — uses surface (off-white) background */
+@utility card-surface {
+  background-color: var(--color-surface);
+  border-radius: var(--radius-2xl);
+  padding: 16px;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   BADGE / PILL UTILITIES  (BEM — block: badge)
+═══════════════════════════════════════════════════════════════════════════ */
+
+@utility badge-base {
+  border-radius: var(--radius-full);
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 10px;
+  padding-right: 10px;
+  align-items: center;
+  justify-content: center;
+}
+
+@utility badge-success {
+  background-color: var(--color-success);
+}
+
+@utility badge-warning {
+  background-color: var(--color-warning);
+}
+
+@utility badge-streak {
+  background-color: var(--color-streak);
+}
+
+@utility badge-error {
+  background-color: var(--color-error);
+}
+
+@utility badge-info {
+  background-color: var(--color-info);
+}
+
+@utility badge-primary {
+  background-color: var(--color-primary);
+}
