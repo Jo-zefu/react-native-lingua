@@ -1,33 +1,34 @@
-import { useRouter } from "expo-router";
-import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { useAuth } from "@clerk/expo";
+import { Redirect } from "expo-router";
+import { ActivityIndicator, StyleSheet, View } from "react-native";
 
 export default function Index() {
-  const router = useRouter();
+  const { isSignedIn, isLoaded } = useAuth();
 
-  return (
-    <View className="flex-1 justify-center items-center bg-background gap-6">
-      <Text className="text-h1">Lingua</Text>
-      <TouchableOpacity
-        style={styles.button}
-        onPress={() => router.push("/onboarding")}
-        activeOpacity={0.8}
-      >
-        <Text style={styles.buttonText}>Get Started →</Text>
-      </TouchableOpacity>
-    </View>
-  );
+  // Still loading Clerk auth state — show spinner
+  if (!isLoaded) {
+    return (
+      <View style={styles.loader}>
+        <ActivityIndicator size="large" color="#6C4EF5" />
+      </View>
+    );
+  }
+
+  // Not signed in → show onboarding
+  if (!isSignedIn) {
+    return <Redirect href="/onboarding" />;
+  }
+
+  // Signed in → home (placeholder until home screen is built out)
+  // TODO: replace with <Redirect href="/(tabs)" /> once the tabs are created
+  return <Redirect href="/home" />;
 }
 
 const styles = StyleSheet.create({
-  button: {
-    backgroundColor: "#6C4EF5",
-    paddingHorizontal: 28,
-    paddingVertical: 14,
-    borderRadius: 14,
-  },
-  buttonText: {
-    fontFamily: "Poppins-SemiBold",
-    fontSize: 16,
-    color: "#FFFFFF",
+  loader: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "#FFFFFF",
   },
 });

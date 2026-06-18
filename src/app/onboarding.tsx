@@ -17,7 +17,7 @@ export default function OnboardingScreen() {
             className="w-11 h-11"
             resizeMode="contain"
           />
-          <Text className="font-poppins-semibold text-[26px] text-text-primary tracking-tight">
+          <Text className="font-poppins-semibold text-[18px] text-text-primary tracking-tight">
             lingua
           </Text>
         </View>
@@ -76,7 +76,7 @@ export default function OnboardingScreen() {
         {/* ── Get Started Button ── */}
         <TouchableOpacity
           className="bg-primary flex-row items-center justify-center gap-2.5 rounded-full h-[58px]"
-          onPress={() => router.push("/")}
+          onPress={() => router.push("/sign-up")}
           activeOpacity={0.85}
         >
           <Text className="font-poppins-semibold text-[17px] text-white">

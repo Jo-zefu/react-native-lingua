@@ -216,3 +216,35 @@
 @utility badge-primary {
   background-color: var(--color-primary);
 }
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   AUTH SCREEN UTILITIES  (BEM — block: auth)
+═══════════════════════════════════════════════════════════════════════════ */
+
+/* auth__input-box — bordered container wrapping a label + text input */
+@utility auth-input-box {
+  border-width: 1.5px;
+  border-color: #E5E7EB;
+  border-radius: 16px;
+  padding-left: 16px;
+  padding-right: 16px;
+  padding-top: 12px;
+  padding-bottom: 14px;
+  background-color: #FFFFFF;
+}
+
+/* auth__input-label — small caption above an input field */
+@utility auth-input-label {
+  font-family: "Poppins-Regular";
+  font-size: 12px;
+  color: #9CA3AF;
+  margin-bottom: 4px;
+}
+
+/* auth__error-text — inline error message below a form field or button */
+@utility auth-error-text {
+  font-family: "Poppins-Regular";
+  font-size: 13px;
+  color: #EF4444;
+  margin-top: 8px;
+}
