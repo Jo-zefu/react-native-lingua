@@ -1,5 +1,5 @@
 import { useAuth, useClerk } from "@clerk/expo";
-import { Redirect } from "expo-router";
+import { Redirect, router } from "expo-router";
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
@@ -20,6 +20,14 @@ export default function HomeScreen() {
         <Text style={styles.hint}>
           Home screen coming soon. Lessons, XP, and more will live here.
         </Text>
+
+        <TouchableOpacity
+          style={styles.languageBtn}
+          onPress={() => router.push("/language-selection")}
+          activeOpacity={0.85}
+        >
+          <Text style={styles.languageBtnText}>Choose a language</Text>
+        </TouchableOpacity>
 
         <TouchableOpacity
           style={styles.signOutBtn}
@@ -75,5 +83,17 @@ const styles = StyleSheet.create({
     fontFamily: "Poppins-Medium",
     fontSize: 15,
     color: "#6B7280",
+  },
+  languageBtn: {
+    backgroundColor: "#6C4EF5",
+    borderRadius: 16,
+    paddingHorizontal: 32,
+    paddingVertical: 14,
+    marginBottom: 12,
+  },
+  languageBtnText: {
+    fontFamily: "Poppins-SemiBold",
+    fontSize: 15,
+    color: "#FFFFFF",
   },
 });
