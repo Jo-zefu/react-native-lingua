@@ -1,5 +1,6 @@
 import { images } from "@/constants/images";
-import { getPopularLanguages } from "@/data/languages";
+import { getLanguageByCode, getPopularLanguages } from "@/data/languages";
+import { useLanguageStore } from "@/store/languageStore";
 import type { Language } from "@/types/learning";
 import { Ionicons } from "@expo/vector-icons";
 import { router } from "expo-router";
@@ -17,6 +18,7 @@ import { SafeAreaView } from "react-native-safe-area-context";
 
 export default function LanguageSelectionScreen() {
   const popularLanguages = useMemo(() => getPopularLanguages(), []);
+  const { setSelectedLanguage } = useLanguageStore();
 
   // Default selection mirrors the design — Spanish is highlighted.
   const [selectedCode, setSelectedCode] = useState<string>("es");
@@ -33,8 +35,11 @@ export default function LanguageSelectionScreen() {
   }, [popularLanguages, searchQuery]);
 
   const handleConfirm = () => {
-    // TODO: persist selectedCode via Zustand once the language store exists.
-    router.back();
+    const language = getLanguageByCode(selectedCode);
+    if (language) {
+      setSelectedLanguage(language);
+    }
+    router.replace("/(tabs)");
   };
 
   return (
