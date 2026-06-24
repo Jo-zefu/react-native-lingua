@@ -2,11 +2,14 @@ import { useAuth } from "@clerk/expo";
 import { Redirect } from "expo-router";
 import { ActivityIndicator, StyleSheet, View } from "react-native";
 
+import { useLanguageStore } from "@/store/languageStore";
+
 export default function Index() {
   const { isSignedIn, isLoaded } = useAuth();
+  const { selectedLanguage, _hasHydrated } = useLanguageStore();
 
-  // Still loading Clerk auth state — show spinner
-  if (!isLoaded) {
+  // Wait for both Clerk and the persisted store to finish loading
+  if (!isLoaded || !_hasHydrated) {
     return (
       <View style={styles.loader}>
         <ActivityIndicator size="large" color="#6C4EF5" />
@@ -14,14 +17,18 @@ export default function Index() {
     );
   }
 
-  // Not signed in → show onboarding
+  // Not signed in → onboarding
   if (!isSignedIn) {
     return <Redirect href="/onboarding" />;
   }
 
-  // Signed in → home (placeholder until home screen is built out)
-  // TODO: replace with <Redirect href="/(tabs)" /> once the tabs are created
-  return <Redirect href="/home" />;
+  // Signed in but no language chosen → force language selection first
+  if (!selectedLanguage) {
+    return <Redirect href="/language-selection" />;
+  }
+
+  // Signed in + language selected → main tabs
+  return <Redirect href="/(tabs)" />;
 }
 
 const styles = StyleSheet.create({
